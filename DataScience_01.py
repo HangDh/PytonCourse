@@ -36,3 +36,19 @@ num_friends_by_id = [(user["id"], number_of_friends(user))
                     for user in users]
 
 print(sorted(num_friends_by_id, key=lambda pair: pair[1], reverse=True))
+
+#Data Sceintists You may know, suggest friends of friends
+
+def friends_of_friends_ids_bad(user):
+    #'foaf' is shortcut for 'friend of a friend'
+    return [foaf["id"]
+            for friend in user["friends"]
+            for foaf in friend["friends"]]
+
+friends_of_friends_ids_bad(users[0])
+
+# no idea what is going on.
+
+print ([friend["id"] for friend in users[0]["friends"]])  # [1, 2]
+print ([friend["id"] for friend in users[1]["friends"]])  # [0, 2, 3]
+print ([friend["id"] for friend in users[2]["friends"]])  # [0, 1, 3]
