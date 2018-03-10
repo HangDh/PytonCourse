@@ -28,7 +28,7 @@ print(after)
 
 timeList = []
 
-for i in range(5):
+for i in range(3):
     timeList.append(datetime.datetime.now())
-    time.sleep(3)  # do usypiania wątków
+    time.sleep(2.5)  # do usypiania wątków
     print(datetime.datetime.now())
