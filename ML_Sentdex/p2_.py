@@ -3,6 +3,7 @@ import math, quandl, datetime
 import numpy as np
 from sklearn import preprocessing, model_selection, svm
 from sklearn.linear_model import LinearRegression
+import pickle
 import matplotlib.pyplot as plt
 from matplotlib import style
 
@@ -38,6 +39,14 @@ X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_s
 
 clf = LinearRegression()
 clf.fit(X_train, y_train)
+# pickle pozwala nam zapisac wytrenowany klasyfikator, dzięki czemu nie musimy go trenowac za każdym razem
+with open('linearregression.pickle', 'wb') as f:
+    pickle.dump(clf, f)
+
+# jeżeli chcemy otworzyć to wtedy
+pickle_in = open('linearregression.pickle', 'rb')
+clf = pickle.load(pickle_in)
+
 accuracy = clf.score(X_test, y_test)
 print("Accuracy of Linear regression: ",accuracy)
 
